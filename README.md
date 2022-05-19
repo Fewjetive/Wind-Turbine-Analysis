@@ -35,10 +35,13 @@
 #### (a) Constants
 
 * $B$: #blades, set to $B=3$ $\checkmark$
-* $U_1$: wind speed, set $U_1=20m/s$ $\checkmark$
+* $U_1$: wind speed, set $U_1=5.56m/s$ $\checkmark$
 * $R$: maximum radius, set to $R=1$ $\checkmark$
-* $n$: # roatations per seconds, assigned arbitrarily. Let $n=1$ $\checkmark$
 * $D=2R$, diameter of turbine
+* $Re=10^5$
+* $\Omega=265.5\mathrm{rpm}=27.8\mathrm{rad/s}$ angular speed
+* $n=\frac{\Omega}{2\pi}=4.425$ #rotataion per second
+* $J=\frac{U_1}{nD}=1.256$ advance ratio
 
 #### (b) Ranging in Numerical Interval: To be Investigated
 
