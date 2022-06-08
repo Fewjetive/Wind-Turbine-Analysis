@@ -6,7 +6,22 @@ function main()
     r_t = 14; % [1, r_t-1], SG6043, [r_t, r_num] -> NACA6409
     [B, U_1, R, D, Omega, rho, n, J] = read_data();
     [theta, naca_matrix, sg_matrix, NACA6409, SG6043] = get_standard(r_num, sigma_num, r_t, R, U_1, Omega, J, rho, B, D, n);
-    [C_T, C_Q] = vary(r_num, sigma_num, r_t, R, U_1, Omega, J, rho, B, D, n, theta, naca_matrix, sg_matrix, NACA6409, SG6043)
+    [C_T, C_Q] = vary(r_num, sigma_num, r_t, R, U_1, Omega, J, rho, B, D, n, theta, naca_matrix, sg_matrix, NACA6409, SG6043);
+    num = 100;
+    C_T_array = zeros(1, num);
+    C_Q_array = zeros(1, num);
+    J_array = zeros(1, num);
+
+    for i = 1:num
+        U_1 = i / 2;
+        J = U_1 / n / D;
+        [C_T_array(1, i), C_Q_array(1, i)] = vary(r_num, sigma_num, r_t, R, U_1, Omega, J, rho, B, D, n, theta, naca_matrix, sg_matrix, NACA6409, SG6043);
+        J_array(1, i) = J;
+    end
+    plot_graph(J_array, C_T_array, 'C_T-J', 'J', 'C_T');
+    plot_graph(J_array, C_Q_array, 'C_Q-J', 'J', 'C_Q');
+    % C_T_array
+    % C_Q_array
     fprintf('Done\n');
 end
 
@@ -34,7 +49,7 @@ function [C_T, C_Q] = vary(r_num, sigma_num, r_t, R, U_1, Omega, J, rho, B, D, n
     end
     r_arr = R / r_num:R / r_num:R;
     [phi_array, a_array, b_array, c_array, C_L_array, C_D_array] = pick_phi(phi_matrix, a_matrix, b_matrix, C_L_matrix, C_D_matrix, r_num, sigma_num);
-    [C_T, C_Q] = thrust_torque_coefficients(r_arr, rho, B, D, J, n, a_array, c_array, phi_array, C_L_array, C_D_array, r_num)
+    [C_T, C_Q] = thrust_torque_coefficients(r_arr, rho, B, D, J, n, a_array, c_array, phi_array, C_L_array, C_D_array, r_num);
 end
 
 
@@ -98,7 +113,7 @@ function [C_T, C_Q] = thrust_torque_coefficients(r, rho, B, D, J, n, a, c, phi, 
     T = trapz(r, dT);
     something = B * rho * n^2 * D ^ 4;
     C_T = T / something;
-    C_Q = Q / something / Q;
+    C_Q = Q / something / D;
 end
 
 function [phi_array, a_array, b_array, c_array, C_L_array, C_D_array] = pick_phi(phi_matrix, a_matrix, b_matrix, C_L_matrix, C_D_matrix, row, col)
