@@ -74,6 +74,17 @@ They can be find using the following equation repeatedly
 $$a=\frac{\sigma(1-a)}{4\sin ^2\phi}(C_L\cos \phi+C_D\sin \phi)$$
 $$b=\frac{\sigma(1-a)}{4\sin ^2\phi}\times\frac{J}{2\pi r/D}(C_L \sin \phi - C_D \cos \phi)$$
 $$\phi = \tan^{-1}\Big(\frac{U_1(1-a)}{\Omega r(1+b)}\Big)$$
+### 4. Find by Numerical Integration
+The unit thrust of a blade element is given by the following equation
+$$dT=\frac{\rho Bc}{2}\Big (\frac{1-a}{\sin\phi}\Big )^2(J^2n^2D^2)(C_L\cos \phi + C_D\sin\phi)$$
+and the unit torque
+$$dQ=\frac{\rho Bc}{2}\Big (\frac{1-a}{\sin\phi}\Big )^2(J^2n^2D^2)(C_L\cos \phi - C_D\sin\phi)r$$
 
+Therefore, the total thrust and torque is given by integration
+$$T=\int dT$$
+$$Q=\int dQ$$
+And the coefficients are defined by
+$$C_T\equiv \frac{T}{B\rho n^2D^4}$$
+$$C_Q\equiv \frac{Q}{B\rho n^2D^5}$$
 ## Airfoil Design
 
