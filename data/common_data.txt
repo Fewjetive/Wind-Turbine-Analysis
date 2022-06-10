@@ -3,6 +3,7 @@ U_1 5.56
 R 0.5
 Omega 27.8
 rho 1.225
+SIGMA 0.5
 -
 
 NACA6409

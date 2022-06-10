@@ -1,4 +1,5 @@
-[C, D] = myFunc()
+%[C, D] = myFunc()
+fprintf('Theta');
 
 function [A, B] = myFunc()
     A = 1:10;
